@@ -63,3 +63,13 @@ body {
     position: relative;                     /* with relative you do have access to offset properties */
     left: 2rem;                             /* indents flow 2 root em's from the left */
 }
+
+.clearfix::before,
+.clearfix::after {
+   content: " ";
+   display: table;
+}
+
+.clearfix::after {
+   clear: both;
+}
