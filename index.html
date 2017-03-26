@@ -10,6 +10,9 @@
         <!-- title tag is required to ensure that HTML renders in all browsers. Is what shows up in the browser tab. -->
         <title> Bloc Jams </title>
         
+        <!-- Viewport is a virtual window that contains the browser's content. Since it is a meta tag, it belongs under the head tag. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <!-- A remotely hosted CSS file that includes the fonts we will use on the homepage. --> 
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300">
         
@@ -19,11 +22,12 @@
         <!-- CSS file that makes browsers render all elements more consistently and in line with modern standards." -->
         <link rel="stylesheet" type="text/css" href="styles/normalize.css">
         
-        <!-- Links to our custom stylesheet. -->
+        <!-- Links to our main.css stylesheet. -->
         <link rel="stylesheet" type="text/css" href="styles/main.css">
         
-        <!-- Links to our selected 'Open Sans' google font. -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <!-- Links to our landing.css stylesheet. -->
+        <link rel="stylesheet" type="text/css" href="styles/landing.css">
+        
     </head>
     
     <!-- contains the content displayable by the browser-->
@@ -41,24 +45,25 @@
             <h1 class="hero-title"> Turn the music up! </h1>
         </section>
 
-        <!-- selling points -->
-        <section class="selling-points">
+        <!-- selling points, uses container class we developed in main.css -->
+        <section class="selling-points container">
             
-            <div class="point">
+            <!-- width is now applied via the container and column classes -->
+            <div class="point column third">
                 <!-- add icon elements provided by the Ionicons font library -->
                 <span class="ion-music-note"></span> 
                 <h5 class="point-title"> Choose your music </h5>
                 <p class = "point-description"> The world is full of music; why should you have to listen to music that someone else chose? </p>
             </div>
             
-            <div class="point">
+            <div class="point column third">
                 <!-- add icon elements provided by the Ionicons font library -->
                 <span class="ion-radio-waves"></span> 
                 <h5 class="point-title"> Unlimited, streaming, ad-free </h5>
                 <p class = "point-description"> No arbitrary limits. No distractions. </p>
             </div>
             
-            <div class="point">
+            <div class="point column third">
                 <!-- add icon elements provided by the Ionicons font library -->
                 <span class="ion-iphone"></span>
                 <h5 class="point-title"> Mobile enabled </h5>

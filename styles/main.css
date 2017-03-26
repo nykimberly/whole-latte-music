@@ -1,3 +1,47 @@
+/* main.css should be used for global tyles. It is good practice to organize styles into multiple files, each with a specific purpose */
+
+*, *::before, *::after {                    /* '*' is a universal selector. :before and :after create pseudo elements for first and last child */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ .container {
+     margin: 0 auto;                        /* horizontal centering */
+     max-width: 64rem;                      /* ensures that even in wide screen mode, the integrity of design (cell width) is maintained */
+ }
+
+ @media (min-width: 640px) {                /* Medium and small screens: 640px, such as for smaller tablets and bigger phones */
+     html {font-size: 112%;}                /* Since rem is based on default browser font, around 16px, we want 100%+ for better legibility */
+     
+     .column {                              /* making a grid system */
+         float: left;                       /* ensures that every element with the volumn class to stick to the left */
+         padding-left: 1rem;                /* add padding to keep some aesthetic space between grid elements */
+         padding-right: 1rem;
+     }
+     .column.full { width: 100%; }
+     .column.two-thirds { width: 66.7%; }
+     .column.half { width: 50%; }
+     .column.third { width: 33.3%; }
+     .column.fourth { width: 25%; }
+     .column.flow-opposite { float: right; }  
+ }
+ 
+ @media (min-width: 1024px) {               /* Large screens: 1024px, such as for laptops and tablets */
+     html {font-size: 120%;}                /* Since rem is based on default browser font, around 16px, we want 100%+ for better legibility */
+     
+     .column {                              /* making a grid system */
+         float: left;                       /* ensures that every element with the volumn class to stick to the left */
+         padding-left: 1rem;                /* add padding to keep some aesthetic space between grid elements */
+         padding-right: 1rem;
+     }
+     .column.full { width: 100%; }
+     .column.two-thirds { width: 66.7%; }
+     .column.half { width: 50%; }
+     .column.third { width: 33.3%; }
+     .column.fourth { width: 25%; }
+     .column.flow-opposite { float: right; }  
+ }
 
 html { 
     height: 100%;                           /* html to take up 100% of browser window */
@@ -10,69 +54,12 @@ body {
     min-height: 100%;                       /* says the height of the must be at minimum 100% of the browser window */
 }
 
-body.landing {                              /* body element with landing class */
-    background-color: rgb(58,23,63);        /* sets the background color to about purple if image doesn't show up */
-}
-
 .navbar {
     padding: 0.5rem;                        /* provides 1/2 of a root em (width of letter m) space inside navbar */
     background-color: rgb(101,18,95);      
 }
 
-.navbar .logo {                             /* under navbar class is nested class element .logo (descendant selector) */
+.navbar > .logo {                           /* under navbar class is nested class element .logo (descendant selector) */
     position: relative;                     /* with relative you do have access to offset properties */
     left: 2rem;                             /* indents flow 2 root em's from the left */
 }
-
- .hero-content {
-     position: relative;                    
-     min-height: 600px;                     /* hero content element must be _at least_ 600 pixels */
-     background-image: url(../assets/images/bloc_jams_bg.jpg);
-     background-repeat: no-repeat;
-     background-position: center center;
-     background-size: cover;                /* scales the image so the background is always covered by the image. */
- }
-
- .hero-content .hero-title {
-     position: absolute;                    /* an absolutely positioned element is removed from the normal flow. */
-     top: 40%;                              /* places title 40% of the way from the top */
-     -webkit-transform: translateY(-50%);   /* center Y transform vendor prefix for webkit-based browser */
-     -moz-transform: translateY(-50%);      /* center Y transform vendor prefix for mozilla-based browser */
-     -ms-transform: translateY(-50%);       /* center Y transform vendor prefix for MS-based browser */
-     transform: translateY(-50%);           /* center Y transform (not officially adopted into CSS3 spec) */
-     width: 100%;                           /* makes sure the title inhabits the full width of its container */
-     text-align: center;                    /* aligns text in the horizontal center of the element */
-     font-size: 4rem;                       /* specifies the size of the font in root em units */
-     font-weight: 300;                      /* makes the font thinner or lighter weight */
-     text-transform: uppercase;             /* transforms the text to be all uppercase lettering */
-     letter-spacing: 0.5rem;                /* puts 0.5 root ems worth of space between each letter */
-     text-shadow: 1px 1px 0px rgb(58,23,63); /* creates a shadow underneath the text for readability over the image */
- }
-
- .selling-points {
-     position: relative;                    
-     display: table;                        /* displays selling points in a table, cells later specified */
-     width: 100%;                           
-     -webkit-box-sizing: border-box;        
-     -moz-box-sizing: border-box;
-     box-sizing: border-box;                /* */
- }
- 
- .point {
-     display: table-cell;
-     position: relative;
-     width: 33.3%;
-     padding: 2rem;
-     text-align: center;
- }
- 
- .point .point-title {
-     font-size: 1.25rem;
- }
- 
- .ion-music-note,
- .ion-radio-waves,
- .ion-iphone {
-     color: rgb(233,50,117);
-     font-size: 5rem;
- }
