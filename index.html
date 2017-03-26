@@ -9,30 +9,62 @@
     
         <!-- title tag is required to ensure that HTML renders in all browsers. Is what shows up in the browser tab. -->
         <title> Bloc Jams </title>
-    
+        
+        <!-- A remotely hosted CSS file that includes the fonts we will use on the homepage. --> 
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300">
+        
+        <!-- A remotely hosted CSS file that includes the icons we will use on the homepage. -->
+        <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        
+        <!-- CSS file that makes browsers render all elements more consistently and in line with modern standards." -->
+        <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+        
+        <!-- Links to our custom stylesheet. -->
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        
+        <!-- Links to our selected 'Open Sans' google font. -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     
     <!-- contains the content displayable by the browser-->
-    <body>
-        <div> <!-- navigation bar -->
-        </div>
-        <div> <!-- hero content -->
-            <h1> Bloc Jams </h1>
-            <h3> Turn the music up! </h3>
-        </div>
-        <div> <!-- selling points -->
-            <div>
-                <h5> Choose your music </h5>
-                <p> The world is full of music; why should you have to listen to music that someone else chose? </p>
+    <body class = "landing">
+        
+        <!-- navigation bar -->
+        <nav class = "navbar">
+            
+            <!-- Displays bloc jams logo on navigation bar -->
+            <img src = "assets/images/bloc_jams_logo.png" alt = "bloc jams logo" class = "logo">
+        </nav>
+        
+        <!-- hero content -->
+        <section class="hero-content"> 
+            <h1 class="hero-title"> Turn the music up! </h1>
+        </section>
+
+        <!-- selling points -->
+        <section class="selling-points">
+            
+            <div class="point">
+                <!-- add icon elements provided by the Ionicons font library -->
+                <span class="ion-music-note"></span> 
+                <h5 class="point-title"> Choose your music </h5>
+                <p class = "point-description"> The world is full of music; why should you have to listen to music that someone else chose? </p>
             </div>
-            <div>
-                <h5> Unlimited, streaming, add-free </h5>
-                <p> No arbitrary limits. No distractions. </p>
+            
+            <div class="point">
+                <!-- add icon elements provided by the Ionicons font library -->
+                <span class="ion-radio-waves"></span> 
+                <h5 class="point-title"> Unlimited, streaming, ad-free </h5>
+                <p class = "point-description"> No arbitrary limits. No distractions. </p>
             </div>
-            <div>
-                <h5> Mobile enabled </h5>
-                <p> Listen to your music on the go. This streaming service is available on all mobile platforms. </p>
+            
+            <div class="point">
+                <!-- add icon elements provided by the Ionicons font library -->
+                <span class="ion-iphone"></span>
+                <h5 class="point-title"> Mobile enabled </h5>
+                <p class = "point-description"> Listen to your music on the go. This streaming service is available on all mobile platforms. </p>
             </div>
-        </div>
+            
+        </section>
     </body>
 </html>
