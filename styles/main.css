@@ -20,12 +20,12 @@ body.landing {                              /* body element with landing class *
 }
 
 .navbar .logo {                             /* under navbar class is nested class element .logo (descendant selector) */
-    position: relative;                     /* */
-    left: 2rem;                             /* */
+    position: relative;                     /* with relative you do have access to offset properties */
+    left: 2rem;                             /* indents flow 2 root em's from the left */
 }
 
  .hero-content {
-     position: relative;                    /* */
+     position: relative;                    
      min-height: 600px;                     /* hero content element must be _at least_ 600 pixels */
      background-image: url(../assets/images/bloc_jams_bg.jpg);
      background-repeat: no-repeat;
@@ -34,8 +34,8 @@ body.landing {                              /* body element with landing class *
  }
 
  .hero-content .hero-title {
-     position: absolute;                    /* */
-     top: 40%;                              /* */
+     position: absolute;                    /* an absolutely positioned element is removed from the normal flow. */
+     top: 40%;                              /* places title 40% of the way from the top */
      -webkit-transform: translateY(-50%);   /* center Y transform vendor prefix for webkit-based browser */
      -moz-transform: translateY(-50%);      /* center Y transform vendor prefix for mozilla-based browser */
      -ms-transform: translateY(-50%);       /* center Y transform vendor prefix for MS-based browser */
@@ -50,12 +50,12 @@ body.landing {                              /* body element with landing class *
  }
 
  .selling-points {
-     position: relative;                    /* */
+     position: relative;                    
      display: table;                        /* displays selling points in a table, cells later specified */
      width: 100%;                           
      -webkit-box-sizing: border-box;        
      -moz-box-sizing: border-box;
-     box-sizing: border-box; /* we'll explain this in a resource */
+     box-sizing: border-box;                /* */
  }
  
  .point {
@@ -76,36 +76,3 @@ body.landing {                              /* body element with landing class *
      color: rgb(233,50,117);
      font-size: 5rem;
  }
-
-#box_1 { 
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 200px;
-	height: 200px;
-	background: #ee3e64;
-}
-#box_2 { 
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 200px;
-	height: 200px;
-	background: #44accf;
-}
-#box_3 { 
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 200px;
-	height: 200px;
-	background: #b7d84b;
-}
-#box_4 { 
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 200px;
-	height: 200px;
-	background: #ebde52;
-}
