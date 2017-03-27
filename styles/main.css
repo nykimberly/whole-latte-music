@@ -8,11 +8,11 @@
 
  .container {
      margin: 0 auto;                        /* horizontal centering */
-     max-width: 64rem;                      /* ensures that even in wide screen mode, the integrity of design (cell width) is maintained */
+     max-width: 64rem;                      /* ensures that even in wide screen mode, the cell width is maintained */
  }
 
- @media (min-width: 640px) {                /* Medium and small screens: 640px, such as for smaller tablets and bigger phones */
-     html {font-size: 112%;}                /* Since rem is based on default browser font, around 16px, we want 100%+ for better legibility */
+ @media (min-width: 640px) {                /* Medium and small screens: 640px i.e. smaller tablets and bigger phones */
+     html {font-size: 112%;}                /* rem based on default font, around 16px, so 100%+ for better legibility */
      
      .column {                              /* making a grid system */
          float: left;                       /* ensures that every element with the volumn class to stick to the left */
@@ -55,14 +55,47 @@ body {
 }
 
 .navbar {
+    position: relative;
     padding: 0.5rem;                        /* provides 1/2 of a root em (width of letter m) space inside navbar */
-    background-color: rgb(101,18,95);      
+    background-color: rgba(101,18,95, 0.5); /* alpha is opacity. */
+    z-index: 1;                             /* elements with larger z-index values sit above lesser ones. */
 }
 
-.navbar > .logo {                           /* under navbar class is nested class element .logo (descendant selector) */
+.navbar .logo {                             /* under navbar class is nested class element .logo (descendant selector) */
     position: relative;                     /* with relative you do have access to offset properties */
     left: 2rem;                             /* indents flow 2 root em's from the left */
-}
+    cursor: pointer;                        /* produces the finger-pointer icon when you hover over the logo */
+ }
+ 
+ .navbar .links-container {
+     display: table;
+     position: absolute;
+     top: 0;
+     right: 0;
+     height: 100px;
+     color: white;
+     text-decoration: none;                 /* by default, anchor tags (<a>) are decorated with an underline */
+ }
+ 
+ .links-container .navbar-link {
+     display: table-cell;
+     position: relative;
+     height: 100%;
+     padding-left: 1rem;
+     padding-right: 1rem;
+     vertical-align: middle;                /* middle value centers our nav links vertically within their containers. */
+     color: white;
+     font-size: 0.625rem;
+     letter-spacing: 0.05rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     text-decoration: none;
+     cursor: pointer;
+ }
+
+ .links-container .navbar-link:hover {
+     color: rgb(233,50,117);                /* when hovering over collection link, it changes to the color specified */
+ }
 
 .clearfix::before,
 .clearfix::after {
