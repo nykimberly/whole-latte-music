@@ -97,6 +97,11 @@ body {
      color: rgb(233,50,117);                /* when hovering over collection link, it changes to the color specified */
  }
 
+ .links-container .navbar-link:active {
+     background-color:white;
+     color: white;                          /* when clicking down on collection link, it changes to white */
+ }
+
 .clearfix::before,
 .clearfix::after {
    content: " ";
