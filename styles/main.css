@@ -98,8 +98,7 @@ body {
  }
 
  .links-container .navbar-link:active {
-     background-color:white;
-     color: white;                          /* when clicking down on collection link, it changes to white */
+     background-color: white;               /* when clicking down on collection link, it changes to white */
  }
 
 .clearfix::before,
