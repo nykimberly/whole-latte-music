@@ -11,6 +11,10 @@
      max-width: 64rem;                      /* ensures that even in wide screen mode, the cell width is maintained */
  }
 
+ .container.narrow {
+     max-width: 56rem;
+ }
+
  @media (min-width: 640px) {                /* Medium and small screens: 640px i.e. smaller tablets and bigger phones */
      html {font-size: 112%;}                /* rem based on default font, around 16px, so 100%+ for better legibility */
      
