@@ -37,16 +37,16 @@ body.landing {                              /* body element with landing class *
      position: relative;
      padding: 2rem;
      text-align: center;
-     opacity: 0;
+     opacity: 0.2;
      -webkit-transform: scaleX(0.9) translateY(3rem);
      -moz-transform: scaleX(0.9) translateY(3rem);
      transform: scaleX(0.9) translateY(3rem);
-     -webkit-transition: all 0.25s ease-in-out;
-     -moz-transition: all 0.25s ease-in-out;
-     transition: all 0.25s ease-in-out;
-     -webkit-transition-delay: 0.2s;
-     -moz-transition-delay: 0.2s;
-     transition-delay: 0.2s;
+     -webkit-transition: all 1.25s ease-in-out;
+     -moz-transition: all 1.25s ease-in-out;
+     transition: all 1.25s ease-in-out;
+     -webkit-transition-delay: 0.5s;
+     -moz-transition-delay: 0.5s;
+     transition-delay: 0.5s;
  }
  
  .point .point-title {
