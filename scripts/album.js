@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     
-    var albumPicasso, albumMarconi, albumGlitch, createSongRow, template,  albumTitle, albumArtist, albumReleaseInfo, albumImage, albumSongList, setCurrentAlbum, albumsArray, i;
+    var albumPicasso, albumMarconi, albumGlitch, createSongRow, template,  albumTitle, albumArtist, albumReleaseInfo, albumImage, albumSongList, setCurrentAlbum, albumsArray, i, m;
 
     // Create Album Object - The Colors by Pablo Picasso
     albumPicasso = {
@@ -79,17 +79,35 @@
         }
     };
 
+//    window.onload = function () {
+//        setCurrentAlbum(albumMarconi);
+//        albumsArray = [albumPicasso, albumGlitch, albumMarconi];
+//        i = 1;
+//        albumImage.addEventListener("click", function (event) {
+//            setCurrentAlbum(albumsArray[i]);
+//            i += 1;
+//            if (i == albumsArray.length) {
+//                i = 0;
+//            }
+//        });
+//    };
+    
     window.onload = function () {
-        setCurrentAlbum(albumMarconi);
+        setCurrentAlbum(albumPicasso);
         albumsArray = [albumPicasso, albumGlitch, albumMarconi];
-        i = 1;
+        m = 0;
         albumImage.addEventListener("click", function (event) {
-            
-            setCurrentAlbum(albumsArray[i]);
-            i += 1;
-            if (i == albumsArray.length) {
-                i = 0;
+            m ++;
+            if (m == 1) {
+                setCurrentAlbum(albumGlitch); // albumsArray[1] won't work after the second loop around
+            } else if (m == 2 ) {
+                setCurrentAlbum(albumMarconi); // hard coding the album variable seems to work  
+            } else {
+                setCurrentAlbum(albumPicasso);
+                m = 0;
             }
         });
     };
+    
+
 }());
