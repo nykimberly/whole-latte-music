@@ -2,7 +2,7 @@
 //    "use strict";
     
 // Define all variables at head
-var albumPicasso, albumMarconi, createSongRow, template, setCurrentAlbum, albumTitle, albumArtist, albumReleaseInfo, albumImage, albumSongList, findParentByClassName, currentParent, getSongItem, songListContainer, playButtonTemplate, pauseButtonTemplate, clickHandler, songRows, i, songItem, songItemNumber, currentlyPlayingSongElement, currentlyPlayingSong;
+var albumPicasso, albumMarconi, createSongRow, template, setCurrentAlbum, albumTitle, albumArtist, albumReleaseInfo, albumImage, albumSongList, findParentByClassName, currentElement, getSongItem, songListContainer, playButtonTemplate, pauseButtonTemplate, clickHandler, songRows, i, songItem, songItemNumber, currentlyPlayingSongElement, currentlyPlayingSong;
 
 // Create Album Object 01 - The Colors by Pablo Picasso
 albumPicasso = {
@@ -74,20 +74,31 @@ setCurrentAlbum = function (album) {
     }
 };
 
-// Create a function that will look up the DOM tree until a target parent class is found. Be sure to account for null cases. 
-findParentByClassName = function (currentElement, targetParentClass) {
+// ASSIGNMENT-13: 
+    // Re-write the function so that it: Checks to see if a parent exists. If it doesn't, then console.log a string that says "No parent found". Shows a different string in console.log when it fails to find a parent with the given class name: "No parent found with that class name".
+
+var findParentByClassName = function(element, targetParentClass) {
+
+    currentElement = element.parentElement;
     
-    // If current element and target class are not valid entries then log out 'null'
-    if (currentElement === null || currentElement.parentElement === null) {
-        console.log("null");
-    
-    // Otherwise, iterate up until parent class is equivalent to target parent class
+    // Check whether there is a parent; otherwise log that no parent is found.
+    if (currentElement === null) {
+        console.log("No parent found.");
+        
+    // If parents are found, then iterate until target class is reached. 
     } else {
-        currentParent = currentElement.parentElement;
-        while (currentParent.className !== targetParentClass) {
-            currentParent = currentParent.parentElement;
+        while (currentElement.className !== targetParentClass) {
+            currentElement = currentElement.parentElement;
         }
-        return currentParent;
+        
+        // If target class is reached, than return the element.
+        if (currentElement.className === targetParentClass) {
+            return currentElement;
+            
+        // Otherwise, log that no parent with that class name was found.    
+        } else {
+            console.log("No parent with that class name found.");
+        }
     }
 };
 
