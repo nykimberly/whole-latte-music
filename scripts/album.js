@@ -79,35 +79,35 @@
         }
     };
 
-//    window.onload = function () {
-//        setCurrentAlbum(albumMarconi);
-//        albumsArray = [albumPicasso, albumGlitch, albumMarconi];
-//        i = 1;
-//        albumImage.addEventListener("click", function (event) {
-//            setCurrentAlbum(albumsArray[i]);
-//            i += 1;
-//            if (i == albumsArray.length) {
-//                i = 0;
-//            }
-//        });
-//    };
-    
     window.onload = function () {
-        setCurrentAlbum(albumPicasso);
+        setCurrentAlbum(albumMarconi);
         albumsArray = [albumPicasso, albumGlitch, albumMarconi];
-        m = 0;
+        i = 1;
         albumImage.addEventListener("click", function (event) {
-            m ++;
-            if (m == 1) {
-                setCurrentAlbum(albumGlitch); // albumsArray[1] won't work after the second loop around
-            } else if (m == 2 ) {
-                setCurrentAlbum(albumMarconi); // hard coding the album variable seems to work  
-            } else {
-                setCurrentAlbum(albumPicasso);
-                m = 0;
+            setCurrentAlbum(albumsArray[i]);
+            i += 1;
+            if (i == albumsArray.length) {
+                i = 0;
             }
         });
     };
+    
+//    window.onload = function () {
+//        setCurrentAlbum(albumPicasso);
+//        albumsArray = [albumPicasso, albumGlitch, albumMarconi];
+//        m = 0;
+//        albumImage.addEventListener("click", function (event) {
+//            m ++;
+//            if (m == 1) {
+//                setCurrentAlbum(albumGlitch); // albumsArray[1] won't work after the second loop around
+//            } else if (m == 2 ) {
+//                setCurrentAlbum(albumMarconi); // hard coding the album variable seems to work  
+//            } else {
+//                setCurrentAlbum(albumPicasso);
+//                m = 0;
+//            }
+//        });
+//    };
     
 
 }());
