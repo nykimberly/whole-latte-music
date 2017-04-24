@@ -1,36 +1,27 @@
-(function () {
-    "use strict";
-    
-    var points, i, revealPoint, animatePoints, sellingPoints, scrollDistance;
-    
-    points = document.getElementsByClassName('point');
-    
-    revealPoint = function (i) {
-        points[i].style.opacity = 1;
-        points[i].style.transform = "scaleX(1) translateY(0)";
-        points[i].style.msTransform = "scaleX(1) translateY(0)";
-        points[i].style.WebkitTransform = "scaleX(1) translateY(0)";
-    };
-    
-    function forEach(array, callback) {
-        for (i = 0; i < array.length; i += 1) {
-            callback(i);
-        }
+var revealPoint, animatePoints, sellingPoints, scrollDistance;
+
+animatePoints = function() {
+  revealPoint = function() {
+    $(this).css({
+      // Transitions to opaque, full x size, and y position
+      opacity: 1,
+      transform: 'scaleX(1) translateY(0)'
+    });
+  };
+  // Facilitates transition for each selling point
+  $.each($('.point'), revealPoint);
+}
+
+$(window).load(function() {
+  // If the height of the screen indicates that selling-points are already in view, reveal the points.
+  if ($(window).height() > 950) {
+    animatePoints();
+  }
+  // Otherwise, reveal points after top page has been scrolled through up to location of selling points
+  scrollDistance = $('.selling-points').offset().top - $(window).height() + 200;
+  $(window).scroll(function(event) {
+    if ($(window).scrollTop() >= scrollDistance) {
+      animatePoints();
     }
-    
-    forEach(points, revealPoint);
-    
-    window.onload = function () {
-        if (window.innerHeight > 950) {
-            animatePoints(points);
-        }
-        sellingPoints = document.getElementsByClassName('selling-points')[0];
-        
-        scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
-        window.addEventListener('scroll', function (event) {
-            if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) {
-                animatePoints(points);
-            }
-        });
-    };
-}());
+  });
+});

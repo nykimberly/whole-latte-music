@@ -5,7 +5,7 @@ body.landing {                              /* body element with landing class *
 }
 
  .hero-content {
-     position: relative;                    
+     position: relative;
      min-height: 600px;                     /* hero content element must be _at least_ 600 pixels */
      background-image: url(../assets/images/bloc_jams_bg.jpg);
      background-repeat: no-repeat;
@@ -30,9 +30,9 @@ body.landing {                              /* body element with landing class *
  }
 
  .selling-points {
-     position: relative;                                  
+     position: relative;
  }
- 
+
  .point {
      position: relative;
      padding: 2rem;
@@ -41,18 +41,18 @@ body.landing {                              /* body element with landing class *
      -webkit-transform: scaleX(0.9) translateY(3rem);
      -moz-transform: scaleX(0.9) translateY(3rem);
      transform: scaleX(0.9) translateY(3rem);
-     -webkit-transition: all 1.25s ease-in-out;
-     -moz-transition: all 1.25s ease-in-out;
-     transition: all 1.25s ease-in-out;
-     -webkit-transition-delay: 2s;
-     -moz-transition-delay: 2s;
-     transition-delay: 2s;
+     -webkit-transition: all 1s ease-in-out;
+     -moz-transition: all 1s ease-in-out;
+     transition: all 1s ease-in-out;
+     -webkit-transition-delay: .1s;
+     -moz-transition-delay: .1s;
+     transition-delay: .1s;
  }
- 
+
  .point .point-title {
      font-size: 1.25rem;
  }
- 
+
  .ion-music-note,
  .ion-radio-waves,
  .ion-iphone {

@@ -1,74 +1,74 @@
 <!-- tells the browser this file should be interpreted as html -->
-<!DOCTYPE html> 
+<!DOCTYPE html>
 
 <!-- marks the beginning and end of content on page -->
 <html>
-    
+
     <!-- contains a set of information that won't be rendered by page... aka metadata about the document, including its title and links to definitions of scripts and style sheets -->
     <head>
-    
+
         <!-- title tag is required to ensure that HTML renders in all browsers. Is what shows up in the browser tab. -->
         <title> Bloc Jams </title>
-        
+
         <!-- Viewport is a virtual window that contains the browser's content. Since it is a meta tag, it belongs under the head tag. -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <!-- A remotely hosted CSS file that includes the fonts we will use on the homepage. --> 
+
+        <!-- A remotely hosted CSS file that includes the fonts we will use on the homepage. -->
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300">
-        
+
         <!-- A remotely hosted CSS file that includes the icons we will use on the homepage. -->
         <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        
+
         <!-- CSS file that makes browsers render all elements more consistently and in line with modern standards." -->
         <link rel="stylesheet" type="text/css" href="styles/normalize.css">
-        
+
         <!-- Links to our main.css stylesheet. -->
         <link rel="stylesheet" type="text/css" href="styles/main.css">
-        
+
         <!-- Links to our landing.css stylesheet. -->
         <link rel="stylesheet" type="text/css" href="styles/landing.css">
-        
+
     </head>
-    
+
     <!-- contains the content displayable by the browser-->
     <body class = "landing">
-        
+
         <!-- navigation bar -->
         <nav class = "navbar">
-            
+
             <!-- Displays click-able bloc jams logo on navigation bar that takes us to home. -->
             <a href="index.html" class="logo">
                 <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo">
             </a>
-            
+
             <!-- Create a container for links because we know we'll need more. -->
             <div class="links-container">
                 <a href="collection.html" class="navbar-link">collection</a>
             </div>
-        </nav>    
+        </nav>
         <!-- hero content -->
-        <section class="hero-content"> 
+        <section class="hero-content">
             <h1 class="hero-title"> Turn the music up! </h1>
         </section>
 
         <!-- selling points, uses container class we developed in main.css -->
         <section class="selling-points container clearfix">
-            
+
             <!-- width is now applied via the container and column classes -->
             <div class="point column third">
                 <!-- add icon elements provided by the Ionicons font library -->
-                <span class="ion-music-note"></span> 
+                <span class="ion-music-note"></span>
                 <h5 class="point-title"> Choose your music </h5>
                 <p class = "point-description"> The world is full of music; why should you have to listen to music that someone else chose? </p>
             </div>
-            
+
             <div class="point column third">
                 <!-- add icon elements provided by the Ionicons font library -->
-                <span class="ion-radio-waves"></span> 
+                <span class="ion-radio-waves"></span>
                 <h5 class="point-title"> Unlimited, streaming, ad-free </h5>
                 <p class = "point-description"> No arbitrary limits. No distractions. </p>
             </div>
-            
+
             <div class="point column third">
                 <!-- add icon elements provided by the Ionicons font library -->
                 <span class="ion-iphone"></span>
@@ -76,6 +76,7 @@
                 <p class = "point-description"> Listen to your music on the go. This streaming service is available on all mobile platforms. </p>
             </div>
         </section>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="scripts/utilities.js"></script>
         <script src="scripts/landing.js"></script>
     </body>
