@@ -5,12 +5,15 @@ var playButtonTemplate,
     pauseButtonTemplate,
     playerBarPlayButton,
     playerBarPauseButton,
+    $previousButton,
+    $nextButton,
     currentlyPlayingSongNumber,
     currentAlbum,
     currentSongFromAlbum,
-    $previousButton,
-    $nextButton,
+    currentSoundFile,
+    currentVolume,
     setSong,
+    setVolume,
     getSongNumberCell,
     createSongRow,
     template,
@@ -48,14 +51,15 @@ pauseButtonTemplate = '<a class="album-song-button">'
                           +'<span class="ion-pause"></span></a>';
 playerBarPlayButton = '<span class="ion-play"></span>';
 playerBarPauseButton = '<span class="ion-pause"></span>';
+$previousButton = $('.main-controls .previous');
+$nextButton = $('.main-controls .next');
 
 // Set variables in the global scope to hold current song and album info.
 currentlyPlayingSongNumber = null;
 currentAlbum = null;
 currentSongFromAlbum = null;
-
-$previousButton = $('.main-controls .previous');
-$nextButton = $('.main-controls .next');
+currentSoundFile = null;
+currentVolume = 80;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
@@ -64,11 +68,40 @@ $nextButton = $('.main-controls .next');
 // Assigns two variables with songNumber.
 setSong = function (number) {
 
+  // If currentSoundFile is true, runs currentSoundFile.stop()
+  if (currentSoundFile) {
+    currentSoundFile.stop();
+  }
+
   // Converts string to integer.
   currentlyPlayingSongNumber = parseInt(number);
 
   // Converts integer to index.
   currentSongFromAlbum = currentAlbum.songs[number - 1];
+
+  // Create a new buzz sound object that can be passed an audioUrl.
+  currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
+
+    // Define properties of sound object here.
+    formats: [ 'mp3' ],
+
+    // Load the mp3s as soon as the page loads.
+    preload: true
+  });
+
+  // Set volume to current volume.
+  setVolume(currentVolume);
+};
+
+// Function to set volume
+setVolume = function(volume) {
+
+  // If song is playing,
+  if (currentSoundFile) {
+
+      // Set volume to specified 'volume'.
+      currentSoundFile.setVolume(volume);
+  }
 };
 
 // Holds html to avoid repetition
@@ -77,26 +110,25 @@ getSongNumberCell = function (number) {
 };
 
 // Create a function that generates the the content for each row
-createSongRow = function (songNumber, songName, songLength) {
+createSongRow = function(songNumber, songName, songLength) {
+
   template =
-      // Row class is 'album-view-song-item', parent class of data items
-      '<tr class="album-view-song-item">'
+    // Row class is 'album-view-song-item', parent class of data items
+    '<tr class="album-view-song-item">'
 
-      // First data item has a class of 'song-item-number'
-      // We will store an additional attribute here called 'data-song-number'.
-      // This will allow us to access the data via DOM.
-      + '  <td class="song-item-number" data-song-number="' + songNumber + '"]'
-          + songNumber + '</td>'
+    // First data item has a class of 'song-item-number'
+    // We will store an additional attribute here called 'data-song-number'.
+    // This will allow us to access the data via DOM.
+    + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
 
-      // Song-item-title is another data in the same row as song-item-number
-      + '  <td class="song-item-title">' + songName + '</td>'
+    // Song-item-title is another data in the same row as song-item-number
+    + '  <td class="song-item-title">' + songName + '</td>'
 
-      // Song-item-duration is another data in the same row as song-item-number
-      + '  <td class="song-item-duration">' + songLength + '</td>'
-      + '</tr>';
+    // Song-item-duration is another data in the same row as song-item-number
+    + '  <td class="song-item-duration">' + songLength + '</td>'
+    + '</tr>';
 
   $row = $(template);
-
   // An event listener will listen for when the mouse clicks on a song #
   clickHandler = function() {
 
@@ -119,24 +151,34 @@ createSongRow = function (songNumber, songName, songLength) {
       // changing from null to this song number.
       setSong(songNumber);
 
+      currentSoundFile.play();
+
       // Update the player bar to hold the new song title and artist.
       updatePlayerBarSong();
 
     // In the click event where the clicked song is playing,
   } else if (currentlyPlayingSongNumber === songNumber) {
 
-  		// Turn the song off by reverting the pause button into a play button and
-  		$(this).html(playButtonTemplate);
+      // If the song is currently paused,
+      if (currentSoundFile.isPaused()) {
 
-      // reverting the currentlyPlaying from 'data-song-number' to 'null'
-  		currentlyPlayingSongNumber = null;
+        // Play the song.
+        currentSoundFile.play();
 
-      // Update variable to track when new song number is established.
-      currentSongFromAlbum = null;
+        // Display pause button both on song row and player bar.
+        $(this).html(pauseButtonTemplate);
+        $('.main-controls .play-pause').html(playerBarPauseButton);
 
-      // Revert the player bar to a play button
-      $('.main-controls .play-pause').html(playerBarPlayButton);
-  	}
+      } else {
+
+        // Otherwise pause the song.
+        currentSoundFile.pause();
+
+        // Display the play button on song row and player bar.
+        $(this).html(playButtonTemplate);
+        $('.main-controls .play-pause').html(playerBarPlayButton);
+      }
+    }
 };
 
   // An event listener will listen for when the mouse hovers over song row
@@ -196,13 +238,11 @@ setCurrentAlbum = function (album) {
   $albumArtist.text(album.artist);
   $albumReleaseInfo.text(album.year + ' ' + album.label);
   $albumImage.attr('src', album.albumArtUrl);
-
   $albumSongList.empty();
 
   // Assign album.song[index] to its corresponding song#, name, and length.
   for (i = 0; i < album.songs.length; i += 1) {
-      $newRow = createSongRow(i + 1, album.songs[i].title,
-                    album.songs[i].duration);
+      $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
       $albumSongList.append($newRow);
   }
 };
@@ -248,6 +288,7 @@ nextSong = function() {
 
   // Set to the new current song.
   setSong(currentSongIndex + 1);
+  currentSoundFile.play();
 
   // Update the player bar information.
   updatePlayerBarSong();
@@ -281,6 +322,7 @@ previousSong = function() {
 
     // Set to the new current song.
     setSong(currentSongIndex + 1);
+    currentSoundFile.play();
 
     // Update the Player Bar information
     updatePlayerBarSong();
