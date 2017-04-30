@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- Head -->
     <head>
         <title> Bloc Jams </title>
         <meta name = "viewport" content = "width=device-width, initial-scale=1">
@@ -11,8 +12,10 @@
         <link rel="stylesheet" type="text/css" href="styles/player_bar.css">
     </head>
 
+<!-- Body -->
     <body class="album">
 
+      <!-- L1, Navigation -->
         <nav class="navbar">
             <a href="index.html" class="logo">
                 <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo">
@@ -22,6 +25,7 @@
             </div>
         </nav>
 
+      <!-- L1, Album Views -->
         <main class = "album-view container narrow">
             <section class = "clearfix">
                 <div class = "column half">
@@ -38,10 +42,12 @@
              </table>
         </main>
 
+      <!-- L1, Music Player -->
         <section class="player-bar">
             <div class="container">
-                <div class="control-group main-controls">
 
+                <!-- L2, Main Controls, prev-play-forward -->
+                <div class="control-group main-controls">
                     <a class="previous">
                         <span class="ion-skip-backward"></span>
                     </a>
@@ -52,8 +58,10 @@
                         <span class="ion-skip-forward"></span>
                     </a>
                 </div>
+
+                <!-- L2, Currently Playing, Information -->
                 <div class="control-group currently-playing">
-                    <h2 class="song-name">My dumb song</h2>
+                    <h2 class="song-name"></h2>
 
                     <div class="seek-control">
                         <div class="seek-bar">
@@ -63,10 +71,11 @@
                          <div class="current-time">2:30</div>
                          <div class="total-time">4:45</div>
                     </div>
-
-                    <h2 class="artist-song-mobile">My dumb song - Fallout Boy</h2>
-                    <h3 class="artist-name">Fallout Boy</h3>
+                    <h2 class="artist-song-mobile"></h2>
+                    <h3 class="artist-name"></h3>
                 </div>
+
+                <!-- L2, Volume Bar, Rendering -->
                 <div class="control-group volume">
                     <span class="ion-volume-high icon"></span>
                     <div class="seek-bar">
@@ -76,8 +85,11 @@
                 </div>
             </div>
         </section>
+
+        <!-- L1, Scripts -->
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="scripts/album.js"></script>
+        <script src="scripts/fixtures.js"></script>
     </body>
 
 </html>
