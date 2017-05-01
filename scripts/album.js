@@ -32,6 +32,7 @@ var playButtonTemplate,
     i,
     trackIndex,
     updatePlayerBarSong,
+    togglePlayFromPlayerBar,
     nextSong,
     currentSongIndex,
     lastSongNumber,
@@ -49,8 +50,11 @@ playButtonTemplate = '<a class="album-song-button">'
                           +'<span class="ion-play"></span></a>';
 pauseButtonTemplate = '<a class="album-song-button">'
                           +'<span class="ion-pause"></span></a>';
+
 playerBarPlayButton = '<span class="ion-play"></span>';
 playerBarPauseButton = '<span class="ion-pause"></span>';
+
+$playPauseButton = $('.main-controls .play-pause');
 $previousButton = $('.main-controls .previous');
 $nextButton = $('.main-controls .next');
 
@@ -119,7 +123,8 @@ createSongRow = function(songNumber, songName, songLength) {
     // First data item has a class of 'song-item-number'
     // We will store an additional attribute here called 'data-song-number'.
     // This will allow us to access the data via DOM.
-    + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
+    + '  <td class="song-item-number" data-song-number="' + songNumber + '">'
+        + songNumber + '</td>'
 
     // Song-item-title is another data in the same row as song-item-number
     + '  <td class="song-item-title">' + songName + '</td>'
@@ -242,7 +247,8 @@ setCurrentAlbum = function (album) {
 
   // Assign album.song[index] to its corresponding song#, name, and length.
   for (i = 0; i < album.songs.length; i += 1) {
-      $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+      $newRow = createSongRow(i + 1,
+        album.songs[i].title, album.songs[i].duration);
       $albumSongList.append($newRow);
   }
 };
@@ -268,6 +274,58 @@ updatePlayerBarSong = function() {
   // Adjust play button to pause button
   $('.main-controls .play-pause').html(playerBarPauseButton);
 };
+
+togglePlayFromPlayerBar = function() {
+
+  // If the song is currently paused,
+  if (currentSoundFile == null) {
+
+    // Play the first song if no song is selected.
+    setSong(1);
+
+    // Update the player bar information.
+    updatePlayerBarSong();
+
+    // Play the song.
+    currentSoundFile.play();
+
+    // Display pause button both on song row and player bar.
+    getSongNumberCell(1).html(pauseButtonTemplate);
+
+    $('.main-controls .play-pause').html(playerBarPauseButton);
+
+  } else if (currentSoundFile.isPaused()) {
+
+    // If the song is paused, play the song.
+    currentSoundFile.play();
+
+    // Display pause button both on song row and player bar.
+    getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
+
+    $('.main-controls .play-pause').html(playerBarPauseButton);
+
+  } else if (currentSoundFile) {
+
+    // Extract index from trackIndex function.
+    currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
+
+    // changing from null to this song number.
+    setSong(currentSongIndex + 1);
+
+    songNumber = parseInt(getSongNumberCell(currentlyPlayingSongNumber).attr('data-song-number'));
+
+    // Update the player bar information.
+    updatePlayerBarSong();
+
+    // Pause the song.
+    currentSoundFile.pause();
+
+    // Display the play button on song row and player bar.
+    getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
+
+    $('.main-controls .play-pause').html(playerBarPlayButton);
+  }
+}
 
 // Function that performs when next button is clicked.
 nextSong = function() {
@@ -336,6 +394,8 @@ previousSong = function() {
     $lastSongNumberCell.html(lastSongNumber);
 };
 
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // Script
 ////////////////////////////////////////////////////////////////////////////////
@@ -345,6 +405,7 @@ $(document).ready(function () {
     // Picasso will show for now (static)
     setCurrentAlbum(albumPicasso);
     // Handles click events on the player bar next and previous buttons
-    $previousButton.click(previousSong);
+    $playPauseButton.click(togglePlayFromPlayerBar);
     $nextButton.click(nextSong);
+    $previousButton.click(previousSong);
 });
