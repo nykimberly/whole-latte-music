@@ -1,50 +1,27 @@
 (function () {
     "use strict";
 
-    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     // Variables
-    ////////////////////////////////////////////////////////////////////////////////
-    var playButtonTemplate,
-        pauseButtonTemplate,
-        playerBarPlayButton,
-        playerBarPauseButton,
-        $previousButton,
-        $nextButton,
-        currentlyPlayingSongNumber,
-        currentAlbum,
-        currentSongFromAlbum,
-        currentSoundFile,
-        currentVolume,
+    ////////////////////////////////////////////////////////////////////////////
+    var playButtonTemplate, pauseButtonTemplate,
+        playerBarPlayButton, playerBarPauseButton,
+        $previousButton, $nextButton,
+        currentlyPlayingSongNumber, currentAlbum, currentSongFromAlbum,
+        currentSoundFile, currentVolume,
         setSong,
         setVolume,
         getSongNumberCell,
-        createSongRow,
-        template,
-        $row,
-        clickHandler,
-        onHover,
-        offHover,
-        setCurrentAlbum,
-        $albumTitle,
-        $albumArtist,
-        $albumReleaseInfo,
-        $albumImage,
-        $albumSongList,
-        $newRow,
-        i,
+        createSongRow, template, $row, clickHandler, onHover, offHover,
+        setCurrentAlbum, $albumTitle, $albumArtist, $albumReleaseInfo, $albumImage, $albumSongList, $newRow, i, updateSeekPercentage, offsetXPercent, percentageString,
         trackIndex,
         updatePlayerBarSong,
-        nextSong,
-        currentSongIndex,
-        lastSongNumber,
-        $nextSongNumberCell,
-        $lastSongNumberCell,
-        previousSong,
-        $previousSongNumberCell;
+        nextSong, currentSongIndex, lastSongNumber, $nextSongNumberCell, $lastSongNumberCell,
+        previousSong, $previousSongNumberCell;
 
-    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     // Assignments
-    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     // Assign desired html elements in variables
     playButtonTemplate = '<a class="album-song-button">'
@@ -63,23 +40,20 @@
     currentSoundFile = null;
     currentVolume = 80;
 
-    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     // Functions
-    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     // Assigns two variables with song number.
     setSong = function (number) {
-
         // Pause any song currently playing.
         if (currentSoundFile) {
             currentSoundFile.stop();
         }
-
         // Converts string to integer.
         currentlyPlayingSongNumber = parseInt(number);
         // Converts integer to index.
         currentSongFromAlbum = currentAlbum.songs[number - 1];
-
         // Create a new buzz sound object that can be passed an audioUrl.
         currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
             // Define properties of sound object here.
@@ -87,19 +61,16 @@
             // Load the mp3s as soon as the page loads.
             preload: true
         });
-
         // Set volume to current volume.
         setVolume(currentVolume);
     };
 
     // Function to set volume
     setVolume = function (volume) {
-
       // If song is playing, specify volume.
         if (currentSoundFile) {
             currentSoundFile.setVolume(volume);
         }
-
     };
 
     // Holds html to avoid repetition
@@ -109,7 +80,6 @@
 
     // Create a function that generates the the content for each row
     createSongRow = function (songNumber, songName, songLength) {
-
         template =
             // Row class is 'album-view-song-item', parent class of data items
             '<tr class="album-view-song-item">'
@@ -122,23 +92,19 @@
             // Song-item-duration is another data in the same row as song-item-number
             + '  <td class="song-item-duration">' + songLength + '</td>'
             + '</tr>';
-
         $row = $(template);
-        // An event listener will listen for when the mouse clicks on a song #
 
+        // An event listener will listen for when the mouse clicks on a song #
         clickHandler = function () {
             // We retrieve the song item number associated with the click
             songNumber = parseInt($(this).attr('data-song-number'));
-
             // In the click event when there is already a song playing,
             // Turn the song off by revert the pause button back to its song number
             if (currentlyPlayingSongNumber !== null) {
                 getSongNumberCell(currentlyPlayingSongNumber).html(currentlyPlayingSongNumber);
             }
-
-          // In the click event where the clicked song isn't already playing,
+            // In the click event where the clicked song isn't already playing,
             if (currentlyPlayingSongNumber !== songNumber) {
-
                 // Turn the song on by rendering the play button to a pause button and
                 $(this).html(pauseButtonTemplate);
                 // changing from null to this song number.
@@ -146,10 +112,8 @@
                 currentSoundFile.play();
                 // Update the player bar to hold the new song title and artist.
                 updatePlayerBarSong();
-
             // In the click event where the clicked song is playing,
             } else if (currentlyPlayingSongNumber === songNumber) {
-
                 // If the song is currently paused,play the song.
                 if (currentSoundFile.isPaused()) {
                     currentSoundFile.play();
@@ -171,7 +135,6 @@
             // We retrieve the song item number associated with this row
             songNumber =
                 parseInt($(this).find('.song-item-number').attr('data-song-number'));
-
             // If the song item number isn't a song that's currently playing,
             if (songNumber !== currentlyPlayingSongNumber) {
                 // then we make the play button appear.
@@ -184,7 +147,6 @@
             // We retrieve the song item number associated with this row
             songNumber =
                 parseInt($(this).find('.song-item-number').attr('data-song-number'));
-
             // If the song item number isn't a song that's currently playing,
             // then we make the song number reappear
             if (songNumber !== currentlyPlayingSongNumber) {
