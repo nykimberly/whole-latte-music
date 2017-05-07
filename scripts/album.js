@@ -11,6 +11,9 @@
         getSongNumberCell,
         createSongRow, template, $row, clickHandler, $volumeFill, $volumeThumb, onHover, offHover,
         setCurrentAlbum, $albumTitle, $albumArtist, $albumReleaseInfo, $albumImage, $albumSongList, $newRow, i,
+        setCurrentTimeInPlayerBar, $currentTimeElement,
+        setTotalTimeInPlayerBar, $totalTimeElement,
+        renderTime, seconds, intSeconds, minutes, remainingSeconds, rendered,
         updateSeekPercentage, offsetXPercent, percentageString,
         setupSeekBars, $seekBars, offsetX, barWidth, seekBarFillRatio, $seekBar,
         updateSeekBarWhileSongPlays,
@@ -42,6 +45,7 @@
     seekBarFillRatio = 0;
 
     // Write functions
+
     setSong = function (number) {                                                   // Assigns two variables with song number.
         if (currentSoundFile) {
             currentSoundFile.stop();                                                // Pause any song currently playing.
@@ -75,7 +79,7 @@
             '<tr class="album-view-song-item">'
             + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
             + '  <td class="song-item-title">' + songName + '</td>'
-            + '  <td class="song-item-duration">' + songLength + '</td>'
+            + '  <td class="song-item-duration">' + renderTime(songLength) + '</td>'
             + '</tr>';
         $row = $(template);                                                         // An event listener will listen for when the mouse clicks on a song #
 
@@ -139,8 +143,52 @@
             $albumSongList.append($newRow);
         }
         $('.currently-playing .song-name').text(album.songs[0].title);
+        $('.currently-playing .artist-name').text(album.artist);
+        $('.currently-playing .artist-song-mobile').text(album.songs[0].title + " - " + album.artist);
+        setTotalTimeInPlayerBar(renderTime(album.songs[0].duration));
+    };
+
+    setCurrentTimeInPlayerBar = function (currentTime) {
+        $currentTimeElement = $('.seek-control .current-time');
+        $currentTimeElement.text(currentTime);
+    };
+
+    setTotalTimeInPlayerBar = function (totalTime) {
+        $totalTimeElement = $('.seek-control .total-time');
+        $totalTimeElement.text(totalTime);
+    };
+
+    renderTime = function (timeInSeconds) {
+        seconds = Number.parseFloat(timeInSeconds);
+        seconds = Number.parseFloat(timeInSeconds);
+        intSeconds = Math.floor(seconds);
+        minutes = Math.floor(intSeconds / 60);
+        remainingSeconds = intSeconds % 60;
+        rendered = minutes + ':';
+        if (remainingSeconds < 10) {
+            rendered += '0';
+        }
+        rendered += remainingSeconds;
+        return rendered;
+    };
+
+    updateSeekBarWhileSongPlays = function () {
+        if (currentSoundFile) {
+            currentSoundFile.bind('timeupdate', function (event) {
+                seekBarFillRatio = this.getTime() / this.getDuration();
+                $seekBar = $('.seek-control .seek-bar');
+                updateSeekPercentage($seekBar, seekBarFillRatio);
+                setCurrentTimeInPlayerBar(renderTime(this.getTime()));
+            });
+        }
+    };
+
+    updatePlayerBarSong = function () {
+        $('.currently-playing .song-name').text(currentSongFromAlbum.title);
         $('.currently-playing .artist-name').text(currentAlbum.artist);
-        $('.currently-playing .artist-song-mobile').text(currentAlbum.title + " - " + currentAlbum.artist);
+        $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
+        $('.main-controls .play-pause').html(playerBarPauseButton);
+        setTotalTimeInPlayerBar(renderTime(currentSongFromAlbum.duration));
     };
 
     updateSeekPercentage = function ($seekBar, seekBarFillRatio) {                  // Write a generic function to update any seek bar with seekBarFillRatio
@@ -185,25 +233,8 @@
         });
     };
 
-    updateSeekBarWhileSongPlays = function () {
-        if (currentSoundFile) {
-            currentSoundFile.bind('timeupdate', function (event) {
-                seekBarFillRatio = this.getTime() / this.getDuration();
-                $seekBar = $('.seek-control .seek-bar');
-                updateSeekPercentage($seekBar, seekBarFillRatio);
-            });
-        }
-    };
-
     trackIndex = function (album, song) {
         return album.songs.indexOf(song);
-    };
-
-    updatePlayerBarSong = function () {
-        $('.currently-playing .song-name').text(currentSongFromAlbum.title);
-        $('.currently-playing .artist-name').text(currentAlbum.artist);
-        $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-        $('.main-controls .play-pause').html(playerBarPauseButton);
     };
 
     togglePlayFromPlayerBar = function () {
@@ -261,19 +292,15 @@
         $lastSongNumberCell.html(lastSongNumber);
     };
 
-    ////////////////////////////////////////////////////////////////////////////////
-    // Script
-    ////////////////////////////////////////////////////////////////////////////////
-
     // Now state what should show upon page load and define some event listeners
     $(document).ready(function () {
         setCurrentAlbum(albumPicasso);
         setVolume(currentVolume);
+        updateSeekPercentage($('.player-bar .seek-control .seek-bar'), seekBarFillRatio);
         setupSeekBars();
-        updateSeekPercentage($('.seek-control .seek-bar'), seekBarFillRatio);
-        $playPauseButton.click(togglePlayFromPlayerBar);
         $previousButton.click(previousSong);
         $nextButton.click(nextSong);
+        $playPauseButton.click(togglePlayFromPlayerBar);
     });
 
 }());
