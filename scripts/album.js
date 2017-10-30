@@ -24,6 +24,14 @@
     nextSong, currentSongIndex, lastSongNumber, $nextSongNumberCell, $lastSongNumberCell,
     previousSong, $previousSongNumberCell;
 
+  // Initialize variables
+  currentlyPlayingSongNumber = null;
+  currentAlbum = null;
+  currentSongFromAlbum = null;
+  currentSoundFile = null;
+  currentVolume = 50;
+  seekBarFillRatio = 0;
+
   // Assign desired html elements in variables
   playButtonTemplate = '<a class="album-song-button">' + '<span class="ion-play"></span></a>';
   pauseButtonTemplate = '<a class="album-song-button">' + '<span class="ion-pause"></span></a>';
@@ -36,14 +44,6 @@
   getSongNumberCell = function (number) {
       return $('.song-item-number[data-song-number="' + number + '"]');
   };
-
-  // Initialize variables
-  currentlyPlayingSongNumber = null;
-  currentAlbum = null;
-  currentSongFromAlbum = null;
-  currentSoundFile = null;
-  currentVolume = 50;
-  seekBarFillRatio = 0;
 
   // Write functions
   setSong = function (number) {
@@ -73,10 +73,6 @@
     if (currentSoundFile) {
       currentSoundFile.setVolume(volume);
     }
-    $volumeFill = $('.volume .fill');
-    $volumeThumb = $('.volume .thumb');
-    $volumeFill.width(volume + '%');
-    $volumeThumb.css({left: volume + '%'});
   };
 
   // Create a function that generates the the content for each row
@@ -133,7 +129,6 @@
         $(this).find('.song-item-number').html(songNumber);
       }
     };
-
     $row.find('.song-item-number').click(clickHandler);
     $row.hover(onHover, offHover);
     return $row;
@@ -190,19 +185,11 @@
     if (currentSoundFile) {
       currentSoundFile.bind('timeupdate', function (event) {
         seekBarFillRatio = this.getTime() / this.getDuration();
-        $seekBar = $('.seek-control .seek-bar');
+        var $seekBar = $('.seek-control .seek-bar');
         updateSeekPercentage($seekBar, seekBarFillRatio);
         setCurrentTimeInPlayerBar(renderTime(this.getTime()));
       });
     }
-  };
-
-  updatePlayerBarSong = function () {
-    $('.currently-playing .song-name').text(currentSongFromAlbum.title);
-    $('.currently-playing .artist-name').text(currentAlbum.artist);
-    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-    $('.main-controls .play-pause').html(playerBarPauseButton);
-    setTotalTimeInPlayerBar(renderTime(currentSongFromAlbum.duration));
   };
 
   updateSeekPercentage = function ($seekBar, seekBarFillRatio) {
@@ -233,7 +220,7 @@
     });
     $seekBars.find('.thumb').mousedown(function (event) {
       // Now use jQuery to find elements with class thumb and add event listener.
-      $seekBar = $(this).parent();
+      var $seekBar = $(this).parent();
       $(document).bind('mousemove.thumb', function (event) {
         offsetX = event.pageX - $seekBar.offset().left;
         barWidth = $seekBar.width();
@@ -251,6 +238,14 @@
         $(document).unbind('mouseup.thumb');
       });
     });
+  };
+
+  updatePlayerBarSong = function () {
+    $('.currently-playing .song-name').text(currentSongFromAlbum.title);
+    $('.currently-playing .artist-name').text(currentAlbum.artist);
+    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
+    $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar(renderTime(currentSongFromAlbum.duration));
   };
 
   trackIndex = function (album, song) {

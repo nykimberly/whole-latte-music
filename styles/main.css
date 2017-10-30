@@ -17,7 +17,7 @@
 
  @media (min-width: 640px) {                /* Medium and small screens: 640px i.e. smaller tablets and bigger phones */
      html {font-size: 112%;}                /* rem based on default font, around 16px, so 100%+ for better legibility */
-     
+
      .column {                              /* making a grid system */
          float: left;                       /* ensures that every element with the volumn class to stick to the left */
          padding-left: 1rem;                /* add padding to keep some aesthetic space between grid elements */
@@ -28,32 +28,31 @@
      .column.half { width: 50%; }
      .column.third { width: 33.3%; }
      .column.fourth { width: 25%; }
-     .column.flow-opposite { float: right; }  
- }
- 
- @media (min-width: 1024px) {               /* Large screens: 1024px, such as for laptops and tablets */
-     html {font-size: 120%;}                /* Since rem is based on default browser font, around 16px, we want 100%+ for better legibility */
-     
-     .column {                              /* making a grid system */
-         float: left;                       /* ensures that every element with the volumn class to stick to the left */
-         padding-left: 1rem;                /* add padding to keep some aesthetic space between grid elements */
-         padding-right: 1rem;
-     }
-     .column.full { width: 100%; }
-     .column.two-thirds { width: 66.7%; }
-     .column.half { width: 50%; }
-     .column.third { width: 33.3%; }
-     .column.fourth { width: 25%; }
-     .column.flow-opposite { float: right; }  
+     .column.flow-opposite { float: right; }
  }
 
-html { 
+ @media (min-width: 1024px) {               /* Large screens: 1024px, such as for laptops and tablets */
+     html {font-size: 120%;}                /* Since rem is based on default browser font, around 16px, we want 100%+ for better legibility */
+
+     .column {                              /* making a grid system */
+         float: left;                       /* ensures that every element with the volumn class to stick to the left */
+         padding-left: 1rem;                /* add padding to keep some aesthetic space between grid elements */
+         padding-right: 1rem;
+     }
+     .column.full { width: 100%; }
+     .column.two-thirds { width: 66.7%; }
+     .column.half { width: 50%; }
+     .column.third { width: 33.3%; }
+     .column.fourth { width: 25%; }
+     .column.flow-opposite { float: right; }
+ }
+
+html {
     height: 100%;                           /* html to take up 100% of browser window */
     font-size: 100%;                        /* font to be 100% of default */
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;   /* sets our font to the "Open Sans" typeface */
     color: white;                           /* sets our text color to white */
     min-height: 100%;                       /* says the height of the must be at minimum 100% of the browser window */
 }
@@ -70,7 +69,7 @@ body {
     left: 2rem;                             /* indents flow 2 root em's from the left */
     cursor: pointer;                        /* produces the finger-pointer icon when you hover over the logo */
  }
- 
+
  .navbar .links-container {
      display: table;
      position: absolute;
@@ -80,7 +79,7 @@ body {
      color: white;
      text-decoration: none;                 /* by default, anchor tags (<a>) are decorated with an underline */
  }
- 
+
  .links-container .navbar-link {
      display: table-cell;
      position: relative;
