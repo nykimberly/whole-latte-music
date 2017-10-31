@@ -25,7 +25,7 @@
     $(window).load(function() {
 
       // If the height of the screen indicates that selling-points are already in view, reveal the points.
-      if ($(window).height() > 950) {
+      if ($(window).height() > 50) {
         animatePoints();
       }
 
