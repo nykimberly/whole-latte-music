@@ -153,7 +153,7 @@
     }
     $('.currently-playing .song-name').text(album.songs[0].title);
     $('.currently-playing .artist-name').text(album.artist);
-    $('.currently-playing .artist-song-mobile').text(album.songs[0].title + " - " + album.artist);
+    $('.currently-playing .artist-song-mobile').text(album.songs[0].title);
     setTotalTimeInPlayerBar(renderTime(album.songs[0].duration));
   };
 
@@ -243,7 +243,7 @@
   updatePlayerBarSong = function () {
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
-    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
+    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title);
     $('.main-controls .play-pause').html(playerBarPauseButton);
     setTotalTimeInPlayerBar(renderTime(currentSongFromAlbum.duration));
   };
@@ -314,7 +314,7 @@
 
   // Now state what should show upon page load and define some event listeners
   $(document).ready(function () {
-    setCurrentAlbum(albumPicasso);
+    setCurrentAlbum(albumPop);
     setVolume(currentVolume);
     updateSeekPercentage($('.player-bar .seek-control .seek-bar'), seekBarFillRatio);
     setupSeekBars();

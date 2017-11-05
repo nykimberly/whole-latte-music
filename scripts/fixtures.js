@@ -1,14 +1,7 @@
-var albumPicasso,
-    albumMarconi;
-
-albumPicasso = {
-    title: 'The Colors',
-    artist: 'Pablo Picasso',
-    label: 'Cubism',
-    year: '1881',
-    albumArtUrl: 'assets/images/album_covers/01.png',
+var albumAcoustics = {
+    title: 'Acoustic Selections',
     songs: [
-        { title: 'Blue', duration: 161.71, audioUrl: 'assets/music/blue' },
+        { title: 'Banana Pancakes by Jack Johnson', duration: 161.71, audioUrl: 'assets/music/blue' },
         { title: 'Green', duration: 103.96, audioUrl: 'assets/music/green' },
         { title: 'Red', duration: 268.45, audioUrl: 'assets/music/red' },
         { title: 'Pink', duration: 153.14, audioUrl: 'assets/music/pink' },
@@ -16,15 +9,22 @@ albumPicasso = {
     ]
 };
 
-albumMarconi = {
-    title: 'The Telephone',
-    artist: 'Guglielmo Marconi',
-    label: 'EM',
-    year: '1909',
-    albumArtUrl: 'assets/images/album_covers/20.png',
+var albumIndie = {
+    title: 'Indie-Folk Selections',
     songs: [
-        { title: 'Hello, Operator?', duration: '1:01' },
-        { title: 'Ring, ring, ring', duration: '5:01' },
+        { title: 'Two Door Cinema Club', duration: '1:01' },
+        { title: 'Green', duration: 103.96, audioUrl: 'assets/music/green' },
+        { title: 'Fits in your pocket', duration: '3:21' },
+        { title: 'Can you hear me now?', duration: '3:14' },
+        { title: 'Wrong phone number', duration: '2:15' }
+    ]
+};
+
+var albumPop = {
+    title: 'Pop/Rock Selections',
+    songs: [
+        { title: 'Two Door Cinema Club', duration: '1:01' },
+        { title: 'Green', duration: 103.96, audioUrl: 'assets/music/green' },
         { title: 'Fits in your pocket', duration: '3:21' },
         { title: 'Can you hear me now?', duration: '3:14' },
         { title: 'Wrong phone number', duration: '2:15' }

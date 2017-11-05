@@ -2,49 +2,45 @@
 <html>
 <!-- Head -->
     <head>
-        <title> Bloc Jams </title>
-        <meta name = "viewport" content = "width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" type="text/css" href="styles/normalize.css">
-        <link rel="stylesheet" type="text/css" href="styles/main.css">
-        <link rel="stylesheet" type="text/css" href="styles/album.css">
-        <link rel="stylesheet" type="text/css" href="styles/player_bar.css">
+      <title> Whole Latte Music </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amita|Luckiest+Guy|Saira+Semi+Condensed|Schoolbell">
+      <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+      <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+      <link rel="stylesheet" type="text/css" href="styles/main.css">
+      <link rel="stylesheet" type="text/css" href="styles/album.css">
+      <link rel="stylesheet" type="text/css" href="styles/player_bar.css">
     </head>
 
 <!-- Body -->
     <body class="album">
 
       <!-- L1, Navigation -->
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo">
-            </a>
-            <div class="links-container">
-                <a href="collection.html" class="navbar-link">collection</a>
-            </div>
-        </nav>
+      <section class="hero-content">
+        <h1 class="hero-title">
+          <a href ="home.html">
+             Whole Latte Music
+          </a>
+        </h1>
+      </section>
 
       <!-- L1, Album Views -->
+      <section class="selling-points container clearfix">
         <main class = "album-view container narrow">
             <section class = "clearfix">
-                <div class = "column half">
-                    <img src="assets/images/album_covers/01.png" class="album-cover-art">
+                <div class="album-view-details column full">
+                  <h2 class="album-view-title"></h2>
                 </div>
-                <div class="album-view-details column half">
-                     <h2 class="album-view-title">The Colors</h2>
-                     <h3 class="album-view-artist">Pablo Picasso</h3>
-                     <h5 class="album-view-release-info">1909 Spanish Records</h5>
-                 </div>
             </section>
-            <table class="album-view-song-list">
-                <!-- We will create JavaScript objects to represent albums. -->
-             </table>
+            <table class="album-view-song-list column full">
+            </table>
         </main>
+      </section>
 
       <!-- L1, Music Player -->
         <section class="player-bar">
             <div class="container">
-
+              <br />
                 <!-- L2, Main Controls, prev-play-forward -->
                 <div class="control-group main-controls">
                     <a class="previous">
@@ -70,8 +66,8 @@
                          <div class="current-time"></div>
                          <div class="total-time"></div>
                     </div>
+
                     <h2 class="artist-song-mobile"></h2>
-                    <h3 class="artist-name"></h3>
                 </div>
 
                 <!-- L2, Volume Bar, Rendering -->
@@ -82,6 +78,7 @@
                         <div class="thumb"></div>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -89,7 +86,7 @@
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
         <script src="scripts/fixtures.js"></script>
-        <script src="scripts/album.js"></script>
+        <script src="scripts/acoustics_album.js"></script>
     </body>
 
 </html>
