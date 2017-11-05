@@ -185,6 +185,9 @@
     if (currentSoundFile) {
       currentSoundFile.bind('timeupdate', function (event) {
         seekBarFillRatio = this.getTime() / this.getDuration();
+        if (seekBarFillRatio == 1) {
+          nextSong();
+        }
         var $seekBar = $('.seek-control .seek-bar');
         updateSeekPercentage($seekBar, seekBarFillRatio);
         setCurrentTimeInPlayerBar(renderTime(this.getTime()));
