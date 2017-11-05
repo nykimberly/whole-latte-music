@@ -1,92 +1,87 @@
 <!DOCTYPE html>
 <html>
 <!-- Head -->
-    <head>
-      <title> Whole Latte Music </title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amita|Luckiest+Guy|Saira+Semi+Condensed|Schoolbell">
-      <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-      <link rel="stylesheet" type="text/css" href="styles/normalize.css">
-      <link rel="stylesheet" type="text/css" href="styles/main.css">
-      <link rel="stylesheet" type="text/css" href="styles/album.css">
-      <link rel="stylesheet" type="text/css" href="styles/player_bar.css">
-    </head>
+  <head>
+    <title> Whole Latte Music </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amita|Luckiest+Guy|Saira+Semi+Condensed|Schoolbell">
+    <link rel="stylesheet" type="text/css" href="assets/ionicons-2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="styles/album.css">
+    <link rel="stylesheet" type="text/css" href="styles/player_bar.css">
+  </head>
 
 <!-- Body -->
-    <body class="album">
+  <body class="album">
 
-      <!-- L1, Navigation -->
-      <section class="hero-content">
-        <h1 class="hero-title">
-          <a href ="home.html">
-             Whole Latte Music
-          </a>
-        </h1>
-      </section>
+    <!-- L1, Navigation -->
+    <section class="hero-content">
+      <h1 class="hero-title">
+        <a href ="home.html">
+           Whole Latte Music
+        </a>
+      </h1>
+    </section>
 
-      <!-- L1, Album Views -->
-      <section class="selling-points container clearfix">
-        <main class = "album-view container narrow">
-            <section class = "clearfix">
-                <div class="album-view-details column full">
-                  <h2 class="album-view-title"></h2>
-                </div>
-            </section>
-            <table class="album-view-song-list column full">
-            </table>
-        </main>
-      </section>
-
-      <!-- L1, Music Player -->
-        <section class="player-bar">
-            <div class="container">
-              <br />
-                <!-- L2, Main Controls, prev-play-forward -->
-                <div class="control-group main-controls">
-                    <a class="previous">
-                        <span class="ion-skip-backward"></span>
-                    </a>
-                    <a class="play-pause">
-                        <span class="ion-play"></span>
-                    </a>
-                    <a class="next">
-                        <span class="ion-skip-forward"></span>
-                    </a>
-                </div>
-
-                <!-- L2, Currently Playing, Information -->
-                <div class="control-group currently-playing">
-                    <h2 class="song-name"></h2>
-
-                    <div class="seek-control">
-                        <div class="seek-bar">
-                             <div class="fill"></div>
-                             <div class="thumb"></div>
-                         </div>
-                         <div class="current-time"></div>
-                         <div class="total-time"></div>
-                    </div>
-
-                    <h2 class="artist-song-mobile"></h2>
-                </div>
-
-                <!-- L2, Volume Bar, Rendering -->
-                <div class="control-group volume">
-                    <span class="ion-volume-high icon"></span>
-                    <div class="seek-bar">
-                        <div class="fill"></div>
-                        <div class="thumb"></div>
-                    </div>
-                </div>
-
-            </div>
+    <!-- L1, Album Views -->
+    <section class="selling-points container clearfix">
+      <main class = "album-view container narrow">
+        <section class = "clearfix">
+          <div class="album-view-details column full">
+            <h2 class="album-view-title"></h2>
+          </div>
         </section>
+        <table class="album-view-song-list column full">
+        </table>
+      </main>
+    </section>
 
-        <!-- L1, Scripts -->
-        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
-        <script src="scripts/fixtures.js"></script>
-        <script src="scripts/indie-folk_album.js"></script>
-    </body>
+    <!-- L1, Music Player -->
+    <section class="player-bar">
+      <div class="container">
+        <br />
+          <!-- L2, Main Controls, prev-play-forward -->
+          <div class="control-group main-controls">
+            <a class="previous">
+              <span class="ion-skip-backward"></span>
+            </a>
+            <a class="play-pause">
+              <span class="ion-play"></span>
+            </a>
+            <a class="next">
+              <span class="ion-skip-forward"></span>
+            </a>
+          </div>
+          <!-- L2, Currently Playing, Information -->
+          <div class="control-group currently-playing">
+            <h2 class="song-name"></h2>
+            <div class="seek-control">
+              <div class="seek-bar">
+                 <div class="fill"></div>
+                 <div class="thumb"></div>
+               </div>
+               <div class="current-time"></div>
+               <div class="total-time"></div>
+            </div>
+            <h2 class="artist-song-mobile"></h2>
+          </div>
+          <!-- L2, Volume Bar, Rendering -->
+          <div class="control-group volume">
+            <span class="ion-volume-high icon"></span>
+            <div class="seek-bar">
+              <div class="fill"></div>
+              <div class="thumb"></div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- L1, Scripts -->
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
+    <script src="scripts/fixtures.js"></script>
+    <script src="scripts/indie-folk_album.js"></script>
+  </body>
 
 </html>
