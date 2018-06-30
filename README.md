@@ -2,7 +2,7 @@
 
 ### Whole Latte Music is an interactive front-end project that utilizes HTML, CSS, JavaScript to provide a simple music-streaming service for users.
 
-[Sample Deployed at GitHub Pages](https://n-kimberly.github.io/JavaScript_Whole-Latte-Music/index.html)
+[Sample Deployed at GitHub Pages](https://n-kimberly.github.io/JavaScript_Whole-Latte-Music/home.html)
 
 ## Background
 
