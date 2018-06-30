@@ -1,7 +1,7 @@
 /* landing.css contains styles pertaining to the landing page. */
 
 html {
-  height: 100%;                           /* html to take up 100% of browser window */
+  height: 100%;
 }
 
 body.landing {
@@ -25,6 +25,8 @@ body.landing {
   min-height: 5rem;
 }
 
+
+.hero-content .hero-title a:link, 
 .hero-content .hero-title a:visited {
   color: #d4ba66;
 }
@@ -85,6 +87,11 @@ body.landing {
 img {
   max-width:100%;
   max-height:100%;
+}
+
+a:link {
+  text-decoration: none;
+  text-decoration-color: none;
 }
 
 a:link, a:visited {
